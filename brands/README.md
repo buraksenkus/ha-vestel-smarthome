@@ -1,9 +1,17 @@
 # Brand assets
 
-These files are **not** used by the integration itself. They are prepared for a
-pull request to [home-assistant/brands](https://github.com/home-assistant/brands),
-which is what makes Home Assistant and HACS show a proper icon instead of the
-generic placeholder.
+This directory is the master copy of the brand artwork, kept here so the source
+files stay together at full resolution. It is not shipped to users.
+
+Two places consume it:
+
+1. **`custom_components/vestel_smarthome/brand/`** — `icon.png` and `logo.png`
+   are copied there. HACS validation requires an `icon.png` at that exact path
+   unless the domain is already listed in the brands repository, so keep the
+   copies in sync when the artwork changes.
+2. **[home-assistant/brands](https://github.com/home-assistant/brands)** — the
+   pull request described below, which is what makes Home Assistant show the
+   icon instead of the generic placeholder.
 
 | File          | Size    | Purpose            |
 | ------------- | ------- | ------------------ |
