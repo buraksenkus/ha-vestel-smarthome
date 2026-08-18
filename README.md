@@ -36,6 +36,9 @@ rules, including the narrower ranges that apply while Eco is on.
 - Home Assistant 2024.12 or newer
 - A Vestel Akıllı Yaşam account with the air conditioner already paired in the app
 
+The integration ships its own brand icon. Home Assistant 2026.3 and newer picks
+it up automatically; older versions simply show the generic placeholder.
+
 ## Installation
 
 ### HACS (recommended)

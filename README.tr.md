@@ -36,6 +36,9 @@ kurallarını izler; Eco açıkken geçerli olan daha dar aralıklar dâhil.
 - Home Assistant 2024.12 veya üzeri
 - Klimanın uygulamada eşleştirilmiş olduğu bir Akıllı Yaşam hesabı
 
+Entegrasyon kendi marka ikonunu içinde taşır. Home Assistant 2026.3 ve üzeri
+bunu otomatik kullanır; daha eski sürümlerde jenerik yer tutucu görünür.
+
 ## Kurulum
 
 ### HACS (önerilen)
