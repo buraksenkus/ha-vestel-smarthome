@@ -1,0 +1,54 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build and attach zip
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set manifest version from the release tag
+        run: |
+          set -euo pipefail
+          version="${GITHUB_REF_NAME#v}"
+          echo "Release tag ${GITHUB_REF_NAME} -> version ${version}"
+          python3 - "$version" <<'PY'
+          import json, sys
+
+          path = "custom_components/vestel_smarthome/manifest.json"
+          with open(path, encoding="utf-8") as handle:
+              manifest = json.load(handle)
+          manifest["version"] = sys.argv[1]
+          with open(path, "w", encoding="utf-8") as handle:
+              json.dump(manifest, handle, indent=2, ensure_ascii=False)
+              handle.write("\n")
+          PY
+          cat custom_components/vestel_smarthome/manifest.json
+
+      # HACS extracts the archive straight into config/custom_components/vestel_smarthome,
+      # so manifest.json must sit at the root of the zip — not inside a folder.
+      - name: Build zip
+        run: |
+          set -euo pipefail
+          cd custom_components/vestel_smarthome
+          zip -r "${GITHUB_WORKSPACE}/vestel_smarthome.zip" . \
+            -x '*__pycache__*' '*.pyc' '*.DS_Store'
+          unzip -l "${GITHUB_WORKSPACE}/vestel_smarthome.zip"
+
+      - name: Verify zip layout
+        run: |
+          set -euo pipefail
+          unzip -l vestel_smarthome.zip | grep -qE ' manifest\.json$' \
+            || { echo "manifest.json is not at the root of the zip"; exit 1; }
+
+      - name: Attach zip to release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release upload "${GITHUB_REF_NAME}" vestel_smarthome.zip --clobber

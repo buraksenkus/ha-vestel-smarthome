@@ -1,0 +1,10 @@
+{
+  "entity": {
+    "switch": {
+      "turbo": { "default": "mdi:weather-windy" },
+      "eco": { "default": "mdi:leaf" },
+      "ionizer": { "default": "mdi:air-purifier" },
+      "sleep": { "default": "mdi:sleep" }
+    }
+  }
+}

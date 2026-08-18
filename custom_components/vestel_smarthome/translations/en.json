@@ -1,0 +1,61 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Vestel Smart Home account",
+        "description": "Sign in with the e-mail and password you use in the Akilli Yasam / Evin Akli app.",
+        "data": {
+          "email": "E-mail",
+          "password": "Password"
+        }
+      },
+      "home": {
+        "title": "Select a home",
+        "data": {
+          "home_id": "Home"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Sign in again",
+        "description": "The stored credentials for {email} were rejected. Enter the password again.",
+        "data": {
+          "password": "Password"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Could not reach the Vestel cloud.",
+      "invalid_auth": "Incorrect e-mail or password.",
+      "no_homes": "This account has no homes registered."
+    },
+    "abort": {
+      "already_configured": "This home is already configured.",
+      "reauth_successful": "Signed in again successfully."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Options",
+        "data": {
+          "scan_interval_seconds": "Polling interval (seconds)"
+        }
+      }
+    }
+  },
+  "entity": {
+    "switch": {
+      "turbo": { "name": "Turbo" },
+      "eco": { "name": "Eco" },
+      "ionizer": { "name": "Ionizer" },
+      "sleep": { "name": "Sleep mode" }
+    },
+    "sensor": {
+      "room_temperature": { "name": "Room temperature" }
+    },
+    "binary_sensor": {
+      "connectivity": { "name": "Connectivity" },
+      "problem": { "name": "Problem" }
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Vestel Akıllı Yaşam hesabı",
+        "description": "Akıllı Yaşam / Evin Aklı uygulamasında kullandığın e-posta ve şifre ile giriş yap.",
+        "data": {
+          "email": "E-posta",
+          "password": "Şifre"
+        }
+      },
+      "home": {
+        "title": "Ev seç",
+        "data": {
+          "home_id": "Ev"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Tekrar giriş yap",
+        "description": "{email} için kayıtlı bilgiler reddedildi. Şifreyi tekrar gir.",
+        "data": {
+          "password": "Şifre"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Vestel bulut servisine ulaşılamadı.",
+      "invalid_auth": "E-posta veya şifre hatalı.",
+      "no_homes": "Bu hesaba kayıtlı ev bulunamadı."
+    },
+    "abort": {
+      "already_configured": "Bu ev zaten ekli.",
+      "reauth_successful": "Giriş yenilendi."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Seçenekler",
+        "data": {
+          "scan_interval_seconds": "Sorgulama aralığı (saniye)"
+        }
+      }
+    }
+  },
+  "entity": {
+    "switch": {
+      "turbo": { "name": "Turbo" },
+      "eco": { "name": "Eco" },
+      "ionizer": { "name": "İyonizer" },
+      "sleep": { "name": "Uyku modu" }
+    },
+    "sensor": {
+      "room_temperature": { "name": "Oda sıcaklığı" }
+    },
+    "binary_sensor": {
+      "connectivity": { "name": "Bağlantı" },
+      "problem": { "name": "Arıza" }
+    }
+  }
+}
