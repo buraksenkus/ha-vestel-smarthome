@@ -2,3 +2,7 @@ __pycache__/
 *.py[cod]
 .venv/
 .DS_Store
+
+/.idea/
+build/
+*.egg-info/

@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ha-vestel-smarthome"
+version = "0.1.0"
+description = "Home Assistant integration for Vestel Smart Home (Akıllı Yaşam) air conditioners"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "mehmetaktas" }]
+requires-python = ">=3.12"
+dependencies = [
+    "homeassistant>=2024.12.0",
+    "aiohttp>=3.9",
+    "voluptuous>=0.13.1",
+]
+
+[project.urls]
+Homepage = "https://github.com/mehmetaktas/ha-vestel-smarthome"
+Issues = "https://github.com/mehmetaktas/ha-vestel-smarthome/issues"
+
+[tool.setuptools.packages.find]
+where = ["custom_components"]
+include = ["vestel_smarthome*"]
