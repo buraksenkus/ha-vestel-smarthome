@@ -21,7 +21,7 @@ import urllib.request
 
 sys.path.insert(0, "custom_components/vestel_smarthome")
 
-from const import API_BASE, CLIENT_ID, CLIENT_SECRET, COGNITO_URL, USER_AGENT  # noqa: E402
+from const import API_BASE, CLIENT_ID, CLIENT_SECRET, COGNITO_URL, USER_AGENT, SUPPORTED_DEVICE_TYPES  # noqa: E402
 
 
 def post(url: str, body: dict, headers: dict) -> tuple[int, dict]:
@@ -91,7 +91,7 @@ def main() -> int:
         return 1
 
     print("\n[3/3] Cihazlar okunuyor...")
-    total = 0
+    total_supported = 0
     for home in homes:
         request = urllib.request.Request(
             f"{API_BASE}/homes/{home['homeId']}/devices",
@@ -104,15 +104,19 @@ def main() -> int:
         with urllib.request.urlopen(request) as response:
             devices = json.load(response)["items"]["homeappliances"]
         for device in devices:
-            supported = "DESTEKLENIYOR" if device.get("deviceType") == "AC" else "atlanacak"
+            supported = "DESTEKLENIYOR" if device.get("deviceType") in SUPPORTED_DEVICE_TYPES else "atlanacak"
             online = "cevrimici" if device.get("connected") else "CEVRIMDISI"
             print(
                 f"  - {device.get('deviceName')} [{device.get('deviceType')}] "
                 f"{device.get('deviceModel')} - {online} - {supported}"
             )
-            total += device.get("deviceType") == "AC"
+            if supported == "DESTEKLENIYOR":
+                total_supported += 1
 
-    print(f"\nSonuc: {total} klima bulundu. Entegrasyon calisacak.")
+    if total_supported == 0:
+        print("\nUYARI: Giris basarili ancak hicbir cihaz bulunamadi. Entegrasyon beklendigi gibi calisamayacak.")
+        return 0
+    print(f"\nSonuc: Desteklenen {total_supported} cihaz bulundu. Entegrasyon calisacak.")
     return 0
 
 
